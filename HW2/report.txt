@@ -1,0 +1,146 @@
+Kevin Bradner
+kbm172
+OS HW #2
+
+Program Listing:
+for - used for 1a
+forb - used for 1b and 1c
+constvar - used for 2a
+
+1:
+
+a:
+
+See for.c for code. I reduced N to 1000 for convenience
+
+output:
+
+$ time ./for
+Looping
+
+real    0m1.867s
+user    0m1.859s
+sys     0m0.004s
+
+
+This program took 1.869 seconds to execute through the for loops (real), of which nearly 100% of that time was spent executing program instructions directly (user), with few kernel services used (sys).
+
+b:
+
+my modified program is called forb.c.
+Inside the innermost loop I have added the following:
+printf("Hello, world! sdklfjsldkgfhlksdfghksajdfhgkljsdfghlkjdfhglkjdhfgkjh");
+I also reduced N to 50:
+
+output:
+[lots of text]
+real    0m15.608s
+user    0m0.042s
+sys     0m0.168s
+
+This time, a substantially larger fraction of total time was spent on IO, as I placed the printf() call in a place that would be run many times. This is why the sys result is much higher, especially in relation to the user time. The user time is lower because of the reduced value of N decreasing the number of commands executed. The real time is much higher, likely because of the time needed for all of the message to print on my terminal.
+
+c:
+
+forb.c already does this (see part b), for the terminal output reason explained above. I did not use sleep, but this waiting around is kind of equivalent for the purposes of time.
+
+2:
+
+(see constvar.c for code)
+program output:
+0x7ffe8dc26040, 0x7ffe8dc26044
+
+a:
+
+relevant top output:
+15472 kevin     20   0    4356    652    580 R 100.0  0.0   0:11.68 constvar
+VIRT Value: 4356
+
+relevant pmap output
+$ pmap 15247
+15247:   ./constvar
+0000000000400000      4K r-x-- constvar
+0000000000600000      4K r---- constvar
+0000000000601000      4K rw--- constvar
+00000000023b0000    132K rw---   [ anon ]
+00007f5dd06b7000   1792K r-x-- libc-2.23.so
+00007f5dd0877000   2048K ----- libc-2.23.so
+00007f5dd0a77000     16K r---- libc-2.23.so
+00007f5dd0a7b000      8K rw--- libc-2.23.so
+00007f5dd0a7d000     16K rw---   [ anon ]
+00007f5dd0a81000    152K r-x-- ld-2.23.so
+00007f5dd0c5c000     12K rw---   [ anon ]
+00007f5dd0ca6000      4K r---- ld-2.23.so
+00007f5dd0ca7000      4K rw--- ld-2.23.so
+00007f5dd0ca8000      4K rw---   [ anon ]
+00007ffe8dc06000    136K rw---   [ stack ]
+00007ffe8dd08000     12K r----   [ anon ]
+00007ffe8dd0b000      8K r-x--   [ anon ]
+ffffffffff600000      4K r-x--   [ anon ]
+ total             4360K
+
+Pmap reports a total memory use of 4360K, while top reports 4356. These numbers are close, bot nit quite the same.
+
+b:
+
+output:
+0x7ffe8dc26040, 0x7ffe8dc26044
+
+
+Based on my program output, 0x7ffe8dc26040 should be the address of a constant, and 
+0x7ffe8dc26044 should be the address of a variable integer.
+
+Both appear in the segment addressed by this line of pmap output:
+00007ffe8dc06000    136K rw---   [ stack ]
+The rw- Permission does not agree with the notion of a constant. However, it must also store data that can be written to, so this makes sense.
+
+c:
+
+Permission type r-- appears for the storage of constant data such as the integer a
+Permission type rw- appears to keep track of changeable data like the integer b
+Permission type r-x appears so that program instructions can be read and executed
+Permission type rwx does not appear because this program does not need to change any code it is executing.
+Permission type --x does not appear because you can't execute something without reading it
+
+
+d:
+
+8K corresponds to 8192 actual bytes. 8192 is 2000 in hexadecimal, meaning there are 1fff more bytes.
+00007f7c01248000 + 1fff = 00007f7c01249fff, so 00007f7c01249fff is the last address.
+A 4 byte integer would need to start 3 bytes before that (at least),
+so the starting address of the last possible 4 byte interger is 00007f7c01249ffc.
+
+3:
+
+a:
+
+lsmod output:
+btrfs                1097728  0
+
+dmesg output:
+[  113.726485] Btrfs loaded, crc32c=crc32c-intel
+
+modinfo output:
+filename:       /lib/modules/4.13.0-31-generic/kernel/fs/btrfs/btrfs.ko
+license:        GPL
+alias:          devname:btrfs-control
+alias:          char-major-10-234
+alias:          fs-btrfs
+srcversion:     DEE8F2D05EC7A560B017E4D
+depends:        raid6_pq,xor
+intree:         Y
+name:           btrfs
+vermagic:       4.13.0-31-generic SMP mod_unload 
+
+Explanation: only one instance of btrfs was found in each of lsmod and dmesg, and the message also seems to be about loading the module.
+
+b:
+(i) I looked in to the module called nvidiafb. This is the framebuffer driver for the Nvidia graphics chipset. 
+
+
+(ii) My output included: description:    Framebuffer driver for nVidia graphics chipset
+I googled this, and found a match on this page:
+https://wiki.gentoo.org/wiki/NVidia/nvidia-drivers#Installation
+
+(iii) I believe my desciption is correct because that site contains the following quote
+"As mentioned above, the NVIDIA kernel driver installs and runs against the current kernel. It builds as a module, so [...]"

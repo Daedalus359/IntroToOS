@@ -1,0 +1,12 @@
+CC = gcc -o
+SRC = hi.c
+OBJ = hi.o
+CFLAGS = -Wall -ggdb
+
+all: hi.o
+
+hi.o: 
+	$(CC) $(OBJ) $(SRC) $(CFLAGS)
+
+clean:
+	rm -f $(OBJ)

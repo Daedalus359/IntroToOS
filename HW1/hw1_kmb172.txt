@@ -1,0 +1,39 @@
+Kevin Bradner
+kmb172
+HW1 Responses
+1/17/18
+
+1. Partial Terminal Output from Top:
+
+9037 kevin     20   0    4356    656    584 R  99.7  0.0   3:03.44 hwwhile                                                                
+9765 kevin     20   0    4356    684    612 S   0.0  0.0   0:00.00 hwsleep
+9033 kevin     20   0    4356    728    656 S   0.0  0.0   0:00.00 hwinput
+9766 kevin     20   0    4356    656    588 R  99.7  0.0   0:06.68 hwfor                                                                  
+
+while and for both consume 99.7 % cpu and have status R, because they each are consuming most of a core's time, and are actively running
+
+sleep and input both consume 0.0 % cpu and have status S, because they are sleeping, and therefore are not consuming much cpu time
+
+2. Terminal Output:
+
+ 7954 kevin     20   0    4356    636    564 R  50.2  0.0   0:42.13 hwwhile                                                                
+ 7958 kevin     20   0    4356    684    612 R  48.8  0.0   0:32.74 hwwhile                                                                
+ 7959 kevin     20   0    4356    624    552 R  47.8  0.0   0:32.08 hwwhile                                                                
+ 7960 kevin     20   0    4356    736    664 R  51.8  0.0   0:31.92 hwwhile                                                                
+ 7965 kevin     20   0    4356    656    584 R  31.9  0.0   0:09.70 hwfor                                                                  
+ 7967 kevin     20   0    4356    684    612 R  34.6  0.0   0:05.37 hwfor                                                                  
+ 7968 kevin     20   0    4356    736    664 R  31.9  0.0   0:04.41 hwfor                                                                  
+ 7969 kevin     20   0    4356    680    612 R  32.2  0.0   0:04.17 hwfor                                                                  
+ 7970 kevin     20   0    4356    632    560 R  32.6  0.0   0:04.04 hwfor                                                                  
+ 7971 kevin     20   0    4356    776    708 R  32.2  0.0   0:03.72 hwfor
+
+ This time, the %cpu values are lower than before. It appears that each of the 4 instances of while is consuming half of a core, and each of the 6 instances of for is consuming 1/3 of a core.
+
+ 3. Terminal Output:
+
+  7954 kevin     20   0    4356    636    564 R  96.3  0.0   3:42.39 hwwhile                                                                
+ 7958 kevin     20   0    4356    684    612 R  99.7  0.0   3:30.59 hwwhile                                                                
+ 7959 kevin     20   0    4356    624    552 R  99.7  0.0   3:30.18 hwwhile                                                                
+ 7960 kevin     20   0    4356    736    664 R  97.7  0.0   3:32.34 hwwhile       
+
+ It appears that the while processes are still running. I am assuming that the for processes timed out by the time I was able to do this. I'm assuming that since I ran the processes in the background, closing the terminal window did not take the processes with it. 

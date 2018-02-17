@@ -1,0 +1,34 @@
+Kevin Bradner
+kmb172
+OS HW 3
+
+1:
+a: The parent process runs lines 1-3 since fork() should return a pid greater than 0 for it
+b: the child progess runs lines 1,2,4,5. the conditional on line 2 will evaluate to false since fork() returns 0 for the child
+c: because the parent and child are running at the same time, so one does not wait for the other
+
+2:
+program: p2.c
+output:
+$ ./p2 
+I am the original parent process. My pid is 10678. My parent's pid is 7738
+I am the first child process. My pid is 10679. My parent's pid is 10678
+I am the second child process. My pid is 10680. My parent's pid is 10678
+Child with pid = 10679 has exited.
+Child with pid = 10680 has exited.
+
+3:
+program: p3.c
+output:
+$ ./p3
+I am the parent process. My pid is 10716. My parent's pid is 7738
+I am the first child process. My pid is 10717. My parent's pid is 10716
+I am the second child process. My pid is 10718. My parent's pid is 10717
+
+4:
+program: p4.c
+output:
+$ ./p4
+I am the second child process. My pid is 10888. My parent's pid is 10887
+I am the first child process. My pid is 10887. My parent's pid is 10886
+I am the parent process. My pid is 10886. My parent's pid is 7738
