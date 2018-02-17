@@ -1,0 +1,19 @@
+Kevin Bradner
+kmb172@case.edu
+Intro to OS, Spring 2018
+
+Problem 1:
+
+code is in shell_kmb172.c
+
+sample output:
+
+$ ./shell_kmb172 
+kmb172_shell>ls
+makefile  sample_files  shell_kmb172  shell_kmb172.c  writeup.txt
+kmb172_shell>echo test string
+test string
+kmb172_shell>exit
+exiting
+
+Problem 2:
