@@ -17,3 +17,41 @@ kmb172_shell>exit
 exiting
 
 Problem 2:
+
+code: variable_core_adder.c
+
+output:
+
+$ ./variable_core_adder 4
+Enter a numer of cores to use between 1 and 4: 1
+Process 22290 total time was 4.175773 seconds. x = 2000000000.
+
+$ ./variable_core_adder
+Enter a numer of cores to use between 1 and 4: 2
+Process 22298 total time was 2.143575 seconds. x = 1000000000.
+Process 22304 total time was 2.144870 seconds. x = 1000000000.
+
+$ ./variable_core_adder
+Enter a numer of cores to use between 1 and 4: 3
+Process 22307 total time was 1.463354 seconds. x = 666666666.
+Process 22308 total time was 1.463373 seconds. x = 666666666.
+Process 22306 total time was 1.474179 seconds. x = 666666666.
+
+$ ./variable_core_adder
+Enter a numer of cores to use between 1 and 4: 4
+Process 22311 total time was 1.121740 seconds. x = 500000000.
+Process 22312 total time was 1.134696 seconds. x = 500000000.
+Process 22310 total time was 1.139624 seconds. x = 500000000.
+Process 22313 total time was 1.153193 seconds. x = 500000000.
+
+Findings:
+Run time is approximately proportional to the sum each core has to compute, but some per-core efficiency is lost as the number of cores goes up.
+
+Problem 3:
+
+code: shared_mem.c
+
+output:
+
+$ ./shared_mem 
+HelloFrom Your Child!
