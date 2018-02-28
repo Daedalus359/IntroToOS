@@ -1,7 +1,3 @@
-//Kevin Bradner, kmb172
-//Modified from core_test_fork4.c from Chris Fietkiewicz
-
-
 #include <stdio.h>
 #include <sys/time.h>
 #include <sys/wait.h>

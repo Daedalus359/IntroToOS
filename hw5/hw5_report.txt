@@ -1,0 +1,34 @@
+Kevin Bradner
+kmb172@case.edu
+Intro to OS Hw 5
+2/27/18
+
+1. See server_kmb172.c and client_kmb172.c
+
+sample output:
+
+$ ./client_kmb172 127.0.0.1 10003
+What is 2 + 1?
+Please enter the message: 3
+Correct!
+
+$ ./server_kmb172 10003
+Listening for client's answer... 
+Here is the client's answer: 3
+
+Client was correct.
+
+--------------------------------------------------------
+
+$ ./client_kmb172 127.0.0.1 10003
+What is 2 + 1?
+Please enter the message: 4
+Incorrect
+
+$ ./server_kmb172 10004
+Listening for client's answer... 
+Here is the client's answer: 4
+
+Client was incorrect.
+
+2.

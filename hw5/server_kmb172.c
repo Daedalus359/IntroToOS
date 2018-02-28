@@ -52,11 +52,28 @@ int main(int argc, char *argv[]) {
           error("ERROR on accept");
      char buffer[256];
      bzero(buffer, sizeof(buffer));
-     int n = read(newsockfd, buffer, sizeof(buffer));
+
+     //step 1 = write a message to the buffer for the client to display
+     sprintf(buffer, "What is 2 + 1?");
+     int n = n = write(newsockfd, buffer, sizeof(buffer));
+
+     bzero(buffer, sizeof(buffer));
+     printf("Listening for client's answer... \n");
+     n = read(newsockfd, buffer, sizeof(buffer));
      if (n < 0) 
           error("ERROR reading from socket");
-     printf("Here is the message: %s\n", buffer);
-     sprintf(buffer, "I got your message");
+     printf("Here is the client's answer: %s\n", buffer);
+
+     if (atoi(buffer) == 3){
+        bzero(buffer, sizeof(buffer));
+        printf("Client was correct.\n");
+        sprintf(buffer, "Correct!");
+     }else{
+        bzero(buffer, sizeof(buffer));
+        printf("Client was incorrect.\n");
+        sprintf(buffer, "Incorrect");
+     }
+
      n = write(newsockfd, buffer, sizeof(buffer));
      if (n < 0) 
           error("ERROR writing to socket");
