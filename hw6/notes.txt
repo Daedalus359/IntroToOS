@@ -1,0 +1,55 @@
+Critical section:
+2 solutions: OpenMP's 'critical', semaphore
+
+critical sections are where the concurrency and cause issues
+
+fix this with:
+
+entry section (does synchronization steps)
+critical section
+exit section (cleanup)
+
+
+see the example makefile for the compiler links
+---------------------------------------------------------------------------------------------
+
+OpenMP:
+to create thread:
+
+#pragma omp parallel{
+	
+}
+
+or
+
+#pragma omp parallel for
+<for loop here>
+
+variables declared before the split are shared, varaibles declared inside are not
+
+remember to #include <omp.h>
+
+see openmp_critical_solution.c
+
+add a #pragma omp critical before the critical line
+or #pragma omp critical{} around the critical section
+
+
+---------------------------------------------------------------------------------------------
+
+Semaphore (or flag)
+
+with fork():
+see semaphore_process_solution.c to see how they are used //PROCESS
+
+first, sem_init(name, <>, initial_val)//set the initial value to 1 to indicate availability
+
+sem_wait makes the prcess wait until the flag goes back up, then puts it down again so that its process can go
+
+post changes the value back to 1 so that however needs to use it next can go
+
+---------------------------------------------------------------------------------------------
+
+with posix:
+
+see semaphore_thread_solution.c //THREAD
