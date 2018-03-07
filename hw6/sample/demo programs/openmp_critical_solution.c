@@ -1,7 +1,9 @@
 // Chris Fietkiewicz. Solves problem with critical section
 // using OpenMP "critical" construct.
 #include <stdio.h>
-#include <omp.h> 
+#include <omp.h>
+
+double shubert(double x1, double x2);
 
 int main () { 
 	int trial; 
@@ -18,3 +20,14 @@ int main () {
 	printf("\n");
 	return 0;
 } 
+
+double shubert(double x1, double x2) {
+	double sum1 = 0; 
+	double sum2 = 0;
+	int i;
+	for (i = 1; i <= 5; i++) {
+		sum1 += i * cos((i + 1) * x1 + i);
+		sum2 += i * cos((i + 1) * x2 + i);
+	}
+	return sum1 * sum2;
+}

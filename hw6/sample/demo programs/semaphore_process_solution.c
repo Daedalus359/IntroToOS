@@ -12,7 +12,8 @@
 int main() {
 	// Set up shared memory for semaphore
 	const int SIZE = 1;
-	const char *name = "ChrisF";
+	const char *name = "ChrisFietkiewicz";
+	printf("Using shared memory named '%s'.\n\n", name);
 	int shm_fd;
 	sem_t *sem;
 	// Create shared memory for semaphore
