@@ -21,8 +21,12 @@ int main ()
 	double x1_start = -2;
 	double x1_stop = 2;
 
+	int tid;
+
 	//the smallest value found so far
 	double min = 0;
+	double min_c = 0;
+	double min_p = 0;
 
 	double y;
 
@@ -37,10 +41,18 @@ int main ()
 				if(y < min)
 				{
 					min = y;
+					tid = omp_get_thread_num();
+					if(tid == 0){
+						min_p = y;
+					}else{
+						min_c = y;
+					}
 				}
 			}
 		}
 	}
+	printf("parent min: %f\n",min_p);
+	printf("child min: %f\n",min_c);
 	printf("min: %f\n",min);
 	return 0;
 }

@@ -1,0 +1,9 @@
+Kevin Bradner
+kmb172@case.edu
+
+P1: see p1.c
+
+output: 
+parent min: -97.274323
+child min: -73.981932
+min: -97.274323
