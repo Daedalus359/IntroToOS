@@ -7,3 +7,18 @@ output:
 parent min: -97.274323
 child min: -73.981932
 min: -97.274323
+
+P2: see p2.c
+output:
+parent min: -97.274323
+child min: -97.274323
+min: -97.274323
+
+
+P3: see p3.c
+
+output:
+parent min: -97.274323
+min: -97.274323
+child min: 0.000000
+
