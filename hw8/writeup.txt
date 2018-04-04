@@ -1,0 +1,7 @@
+Kevin Bradner
+kmb172@case.edu
+Hw8
+
+p1 file: hw8_1.c
+
+p2 file: hw8_2.c
