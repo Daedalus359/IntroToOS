@@ -1,0 +1,3 @@
+instructions:
+ssh kmb172@redcat.case.edu
+srun -c 6 --time=1:00:00 --pty /bin/bash
