@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 	struct timeval start, end, diff;  // timers
 	gettimeofday(&start,NULL); // Unix timer
 
-	for (next_index = 1; next_index < num_process & !pid; next_index++) {
+	for (next_index = 0; next_index < num_process & !pid; next_index++) {
 		pid = fork();
 		if (!pid)
 			p_index = next_index;
