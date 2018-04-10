@@ -7,4 +7,8 @@
 cp p3.c $PFSDIR/.
 cd $PFSDIR
 gcc p3.c -o p3 -lrt -lpthread -lm
-./p3
+./p3 1
+./p3 2
+./p3 3
+./p3 4
+./p3 5
