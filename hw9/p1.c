@@ -31,12 +31,10 @@ int main (){
 		for (x1 = x1_start; x1 <= x1_stop; x1 += stepSize) {
 			for (x2 = -2; x2 <= 2; x2 += stepSize) {
 				y = shubert(x1, x2);
-				printf("%.2f ", y);
 				#pragma omp critical
 				if (y < min)
 					min = y;
 			}
-			printf("\n");
 		}
 	}
 	gettimeofday(&end, NULL);
