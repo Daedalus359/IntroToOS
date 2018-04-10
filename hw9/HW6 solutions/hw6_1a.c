@@ -1,15 +1,19 @@
-// Chris Fietkiewicz. OpenMP solution without "for" clause
+// Kevin Bradner, kmb172@case.edu
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
 # include <omp.h>
+# include <sys/time.h>
 
 double shubert(double step, double x2);
 
 int main (){
-	double min = 0, stepSize = 0.5;
+	double min = 0, stepSize = 0.005;
 	int nSteps = (int) (4.0 / stepSize);
 	int step; // Step index
+
+	struct timeval start, end, diff;
+	gettimeofday(&start, NULL);
 
 	#pragma omp parallel
 	{
@@ -35,7 +39,9 @@ int main (){
 			printf("\n", y);
 		}
 	}
-	printf("min = %.2f ", min);
+	gettimeofday(&end, NULL);
+	timersub(&end, &start, &diff);
+	printf("min = %.2f , time = %.2f \n", min, elapsd_time.tv_sec+elapsd_time.tv_usec/1000000.0);
 }
 
 double shubert(double step, double x2) {
