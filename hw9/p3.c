@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 
 	double x1, x2, y;
 	double x_start = p_index * range - 2;
-	double x_stop = x_start + range / stepSize;
+	double x_stop = x_start + range - stepSize;
 	double local_min = 0;
 	for (x1 = x_start; x1 <= x_stop; x1 += stepSize){
 		for (x2 = -2; x2 <= 2; x2 += stepSize){
@@ -83,11 +83,11 @@ int main(int argc, char *argv[])
 	sem_post(sem);
 	wait(NULL);
 
-
-			gettimeofday(&end, NULL);
+	if(p_index == 0){
+		gettimeofday(&end, NULL);
 		timersub(&end, &start, &diff);
 		printf("min = %.2f, time = %.2f \n", global_min[0], diff.tv_sec+diff.tv_usec/1000000.0);
-	
+	}
 	return 0;
 }
 
