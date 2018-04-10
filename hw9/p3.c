@@ -83,11 +83,10 @@ int main(int argc, char *argv[])
 	sem_post(sem);
 	wait(NULL);
 
-	if (0 == 0){
-		gettimeofday(&end, NULL);
+
+			gettimeofday(&end, NULL);
 		timersub(&end, &start, &diff);
 		printf("min = %.2f, time = %.2f \n", global_min[0], diff.tv_sec+diff.tv_usec/1000000.0);
-	}
 	
 	return 0;
 }
