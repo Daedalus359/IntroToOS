@@ -36,12 +36,12 @@ int main (){
 				if (y < min)
 					min = y;
 			}
-			printf("\n", y);
+			printf("\n");
 		}
 	}
 	gettimeofday(&end, NULL);
 	timersub(&end, &start, &diff);
-	printf("min = %.2f , time = %.2f \n", min, diff.tv_sec+diffx.tv_usec/1000000.0);
+	printf("min = %.2f , time = %.2f \n", min, diff.tv_sec+diff.tv_usec/1000000.0);
 }
 
 double shubert(double step, double x2) {
