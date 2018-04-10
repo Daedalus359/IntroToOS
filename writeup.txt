@@ -1,3 +1,8 @@
-instructions:
-ssh kmb172@redcat.case.edu
-srun -c 6 --time=1:00:00 --pty /bin/bash
+p1 output:
+
+1 core min = -186.73 , time = 0.34 
+2 cores min = -186.73 , time = 0.32 
+3 cores min = -186.73 , time = 0.25 
+4 cores min = -186.73 , time = 0.27 
+5 cores min = -186.73 , time = 0.34 
+
