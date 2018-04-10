@@ -17,6 +17,8 @@ double global_min = 0; // Global minimum
 double range;
 double stepSize = 0.005;
 
+int i;
+
 double shubert(double step, double x2);
 void *child(); /* child thread */
 
@@ -41,12 +43,12 @@ int main(int argc, char *argv[])
 	double start[num_threads];
 	range = 4.0 / num_threads;
 
-	for (int i = 0; i < num_threads; i++) {
+	for (i = 0; i < num_threads; i++) {
 		start[i] = i * range - 2;
 		pthread_create(&tid[i], NULL, child, &start[i]);
 	}
 
-	for (int i = 0; i < num_threads; i++)
+	for (i = 0; i < num_threads; i++)
 		pthread_join(tid[i], NULL);
 	
 	gettimeofday(&end, NULL);
@@ -81,10 +83,10 @@ void *child(void *start) {
 double shubert(double step, double x2) {
 	double sum1 = 0; 
 	double sum2 = 0;
-	int i;
-	for (i = 1; i <= 5; i++) {
-		sum1 += i * cos((i + 1) * step + i);
-		sum2 += i * cos((i + 1) * x2 + i);
+	int j;
+	for (j = 1; j <= 5; j++) {
+		sum1 += j * cos((j + 1) * step + j);
+		sum2 += j * cos((j + 1) * x2 + j);
 	}
 	return sum1 * sum2;
 }
